@@ -164,15 +164,15 @@
 <body>
     <div class="container">
         <header>
-            <span class="app-badge">EcoCarga v2.3.8</span>
+            <span class="app-badge">EcoCarga v2.5.0</span>
             <h1>Política de Privacidad y Aviso Legal</h1>
-            <p class="date">Última actualización: 27 de octubre de 2026</p>
+            <p class="date">Última actualización: 28 de octubre de 2026</p>
         </header>
 
         <section>
             <h2>1. Compromiso de Soberanía y Privacidad de Datos</h2>
             <p>La aplicación <strong>EcoCarga</strong> ha sido concebida bajo el principio de <em>privacidad por diseño</em> y arquitectura soberana orientada al cliente (<em>client-only</em>).</p>
-            <p>EcoCarga <strong>no posee servidores centrales propios, ni almacena perfiles en bases de datos remotas privadas</strong>. Las estaciones guardadas, las alarmas de vigilancia configuradas y las preferencias personales residen exclusivamente de manera local y cifrada en el almacenamiento interno protegido de su propio dispositivo Android.</p>
+            <p>EcoCarga <strong>no posee servidores centrales propios, ni almacena perfiles en bases de datos remotas privadas</strong>. Las estaciones guardadas, las alarmas de vigilancia configuradas y las preferencias personales residen exclusivamente de manera local y cifrada (mediante respaldo cifrado <code>AES-256-GCM</code> en Android Keystore) en el almacenamiento interno aislado de su propio dispositivo Android.</p>
         </section>
 
         <section>
@@ -182,48 +182,51 @@
                 <p><strong>Ámbito Solicitado:</strong> <code>https://www.googleapis.com/auth/drive.appdata</code> (Acceso a la carpeta oculta de datos de aplicación en Google Drive).</p>
             </div>
             <ul>
-                <li><strong>Finalidad Exclusiva:</strong> Guardar y restaurar el archivo de configuración <code>ecocarga_backup.json</code> (lista de estaciones favoritas y parámetros de la app) cuando el usuario lo solicite expresamente de manera manual.</li>
-                <li><strong>Aislamiento Total de Archivos Personales:</strong> EcoCarga <strong>no puede ver, editar, leer ni eliminar ningún otro archivo de su Google Drive</strong>. El ámbito <code>drive.appdata</code> está estrictamente confinado a una carpeta oculta del sistema reservada para esta app a la que ningún otro archivo o usuario externo puede acceder.</li>
+                <li><strong>Finalidad Exclusiva:</strong> Guardar y restaurar el archivo de configuración <code>ecocarga_backup.json</code> (lista de estaciones favoritas y alias personalizados) cuando el usuario lo solicite expresamente desde la pestaña <em>Perfil</em>.</li>
+                <li><strong>Aislamiento Total de Archivos Personales:</strong> EcoCarga <strong>no puede ver, editar, leer ni eliminar ningún otro archivo de su Google Drive</strong>. El ámbito <code>drive.appdata</code> está estrictamente confinado a una carpeta oculta del sistema (<code>appDataFolder</code>) reservada para esta app a la que ningún otro archivo o usuario externo puede acceder.</li>
                 <li><strong>Soberanía del Usuario:</strong> La sincronización no se realiza a servidores de EcoCarga ni de terceros, sino directamente desde el dispositivo del usuario a su propio almacenamiento personal en Google Drive mediante peticiones HTTPS seguras.</li>
             </ul>
         </section>
 
         <section>
-            <h2>3. Servicios de Terceros y Pagos Integrados</h2>
-            <p>Para la funcionalidad de suscripción, autenticación y publicidad en el plan gratuito, se integran los servicios oficiales provistos por Google LLC:</p>
+            <h2>3. Servicios de Terceros, Consultas de Red y Pagos</h2>
+            <p>Para las consultas de disponibilidad, suscripción, autenticación y publicidad en el plan gratuito, la aplicación interactúa únicamente con los siguientes servicios:</p>
             <ul>
-                <li><strong>Google Play Billing (Suscripciones PRO):</strong> Todas las compras y suscripciones recurrentes (como el plan <code>ecocarga_pro_monthly</code>) se gestionan e implementan íntegramente a través de la infraestructura segura de Google Play. EcoCarga nunca tiene acceso ni almacena números de tarjeta, cuentas bancarias ni información de facturación del usuario. Los usuarios pueden gestionar o cancelar sus suscripciones en cualquier momento desde <a href="https://play.google.com/store/account/subscriptions" target="_blank" class="action-link">Google Play Subscriptions</a>.</li>
-                <li><strong>Google Sign-In:</strong> Permite obtener de forma segura un token de autorización OAuth en el dispositivo para comunicar con la API de Google Drive AppData. EcoCarga únicamente almacena de forma local el nombre y correo del usuario para mostrar el estado de vinculación en el perfil.</li>
-                <li><strong>Google AdMob:</strong> En el plan gratuito, se muestran anuncios publicitarios (banners y anuncios de recompensa voluntarios). Google AdMob puede procesar el Identificador de Publicidad (<code>AD_ID</code>) de acuerdo con sus propias políticas de privacidad para la medición de anuncios. En la suscripción PRO, los anuncios se desactivan por completo.</li>
+                <li><strong>Consultas de Disponibilidad y Logotipos (HTTPS):</strong> Las consultas de estado se realizan directamente desde el dispositivo mediante HTTPS solo para las estaciones en sincronización activa (las estaciones en reserva permanecen estáticas sin tráfico de red). La obtención de logotipos identificativos de operadores aplica validación estricta HTTPS, protección anti-SSRF y almacenamiento en caché local.</li>
+                <li><strong>Google Play Billing (Suscripciones PRO):</strong> Todas las compras y suscripciones recurrentes (como los planes <code>ecocarga_pro_monthly</code> / <code>ecocarga_premium_monthly</code>) se gestionan íntegramente a través de la infraestructura oficial de Google Play. EcoCarga nunca tiene acceso ni almacena números de tarjeta, cuentas bancarias ni información de facturación. Los importes aplicables se muestran directamente en la pasarela de Google Play según la región del usuario, quien puede gestionar o cancelar su suscripción en cualquier momento desde <a href="https://play.google.com/store/account/subscriptions" target="_blank" class="action-link">Google Play Subscriptions</a>.</li>
+                <li><strong>Google Sign-In:</strong> Permite obtener de forma segura un token de autorización OAuth en el dispositivo para comunicar con la API de Google Drive AppData. EcoCarga únicamente almacena de forma local el nombre, correo y avatar del usuario (descargado exclusivamente desde dominios oficiales de Google por HTTPS) para mostrar el estado de vinculación en la pestaña <em>Perfil</em>.</li>
+                <li><strong>Google AdMob:</strong> En el Plan Gratuito, las alertas de vigilancia se financian mediante anuncios bonificados voluntarios con consentimiento previo. Google AdMob puede procesar el Identificador de Publicidad (<code>AD_ID</code>) conforme a sus políticas de privacidad. En el Plan PRO, los anuncios se desactivan por completo.</li>
             </ul>
         </section>
 
         <section>
             <h2>4. Permisos del Dispositivo y Justificación Técnica</h2>
-            <p>EcoCarga solicita únicamente los permisos requeridos para sus funciones operativas:</p>
+            <p>EcoCarga solicita únicamente los permisos mínimos requeridos para sus funciones operativas:</p>
             <ul>
-                <li><strong>FOREGROUND_SERVICE (Servicio en primer plano - Tipo specialUse):</strong> Requerido cuando el usuario activa la vigilancia en tiempo real de una estación de recarga pública, para comprobar de manera continua el estado de disponibilidad y avisar de inmediato cuando una toma quede libre mientras el usuario conduce o espera.</li>
-                <li><strong>POST_NOTIFICATIONS:</strong> Empleado exclusivamente para emitir alertas locales audibles y visuales cuando se libera un conector vigilado.</li>
-                <li><strong>INTERNET / ACCESS_NETWORK_STATE:</strong> Para conectarse a la API pública de mapareve.es, validar suscripciones en Google Play y acceder a la carpeta de copias de seguridad de Google Drive.</li>
-                <li><strong>ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION (Opcional):</strong> Utilizado bajo demanda exclusiva del usuario en la pantalla del mapa para centrar el visor en su posición actual. La geolocalización nunca se registra ni se envía a ningún servidor.</li>
+                <li><strong>FOREGROUND_SERVICE y FOREGROUND_SERVICE_SPECIAL_USE:</strong> Requeridos exclusivamente cuando el usuario arma una alerta sobre una estación o conector ocupado, para comprobar periódicamente su estado y emitir un aviso inmediato en cuanto quede libre. El servicio se detiene automáticamente al liberarse la toma o al desactivar las alertas.</li>
+                <li><strong>POST_NOTIFICATIONS y VIBRATE:</strong> Empleados exclusivamente para emitir alertas locales audibles y con vibración cuando se libera un conector vigilado.</li>
+                <li><strong>INTERNET y ACCESS_NETWORK_STATE:</strong> Para consultar la API pública de puntos de recarga (mapareve.es), validar suscripciones en Google Play y sincronizar la carpeta privada de Google Drive.</li>
+                <li><strong>ACCESS_FINE_LOCATION y ACCESS_COARSE_LOCATION (Opcional):</strong> Utilizados exclusivamente bajo demanda del usuario en la pestaña <em>Mapa</em> para centrar el visor en su posición actual. La ubicación nunca se registra en segundo plano ni se envía a servidores propios.</li>
+                <li><strong>WAKE_LOCK y REQUEST_IGNORE_BATTERY_OPTIMIZATIONS (Opcional):</strong> Permiten mantener estable el ciclo de vigilancia cuando el usuario tiene una alerta activa con la pantalla apagada.</li>
+                <li><strong>Escaneo de Códigos QR (Google Code Scanner / Cámara bajo demanda):</strong> Utilizado únicamente cuando el usuario pulsa "Escanear Código QR con Cámara" en Ajustes para importar su lista de estaciones desde otro teléfono.</li>
             </ul>
         </section>
 
         <section id="eliminacion-datos">
             <h2>5. Política de Eliminación de Cuentas y Datos</h2>
-            <p>En cumplimiento con las políticas de Google Play, usted tiene el derecho y la facultad de eliminar sus datos en cualquier momento:</p>
+            <p>En cumplimiento con las políticas de Google Play, usted tiene el control total para eliminar sus datos en cualquier momento:</p>
             <ul>
-                <li><strong>Eliminación local:</strong> Desde la app, puede pulsar "Restablecer datos" en Ajustes o simplemente desinstalar la app para borrar de inmediato todos los datos almacenados localmente en su dispositivo.</li>
-                <li><strong>Desvinculación y eliminación de cuenta:</strong> En la pestaña <em>Perfil</em> de la app, puede presionar el botón <strong>"Desvincular cuenta"</strong>, lo cual borra el perfil local y revoca los tokens de sesión.</li>
-                <li><strong>Eliminación de la copia en la nube:</strong> Puede eliminar el archivo de copia de seguridad directamente desde la app o revocar el acceso a Google Drive en cualquier momento visitando <a href="https://myaccount.google.com/permissions" target="_blank" class="action-link">Permisos de la Cuenta de Google</a> y seleccionando EcoCarga > Eliminar acceso. Al eliminar el acceso, Google elimina los datos de la carpeta de aplicación.</li>
-                <li><strong>Solicitud asistida:</strong> Consulte nuestra página dedicada de <a href="data-deletion.html" class="action-link">Solicitud de Eliminación de Datos</a> para conocer el procedimiento paso a paso o contactar por correo electrónico.</li>
+                <li><strong>Eliminación local de estaciones y alertas:</strong> En la pestaña <em>Cargadores</em>, deslice cualquier tarjeta hacia la izquierda para eliminarla individualmente, o pulse "Eliminar todas" en la pestaña <em>Vigilancia</em> para borrar todas las alertas activas. Asimismo, al borrar los datos de la aplicación desde los Ajustes de Android o desinstalar EcoCarga, se elimina de inmediato todo el almacenamiento local del dispositivo.</li>
+                <li><strong>Desvinculación y eliminación de cuenta local:</strong> En la pestaña <em>Perfil</em>, puede presionar el botón <strong>"Desvincular cuenta"</strong>, lo cual borra inmediatamente el perfil local y revoca la sesión de Google en la app.</li>
+                <li><strong>Eliminación de la copia en la nube (Google Drive):</strong> Puede revocar el acceso y eliminar los datos ocultos de la aplicación en cualquier momento visitando <a href="https://myaccount.google.com/permissions" target="_blank" class="action-link">Permisos de la Cuenta de Google</a> y seleccionando EcoCarga &gt; Eliminar acceso, o desde Configuración &gt; Administrar aplicaciones en Google Drive web.</li>
+                <li><strong>Solicitud asistida:</strong> Consulte nuestra página dedicada de <a href="data-deletion.html" class="action-link">Solicitud de Eliminación de Datos</a> para conocer el procedimiento paso a paso.</li>
             </ul>
         </section>
 
         <section>
             <h2>6. Aviso Legal y Descargo de Responsabilidad</h2>
             <div class="disclaimer-box">
-                <p><strong>Descargo:</strong> EcoCarga es una aplicación independiente desarrollada para consulta ciudadana de puntos de recarga de vehículos eléctricos. <strong>EcoCarga no tiene afiliación, patrocinio, vínculo societario ni relación contractual con las empresas operadoras ni con mapareve.es</strong>. La información de disponibilidad se obtiene en tiempo real de fuentes públicas de acceso abierto y su carácter es meramente informativo y orientativo.</p>
+                <p><strong>Descargo:</strong> EcoCarga es una herramienta independiente desarrollada para la consulta ciudadana de puntos de recarga de vehículos eléctricos. <strong>EcoCarga no tiene afiliación, patrocinio, vínculo societario ni relación oficial con Iberdrola, Repsol, Endesa, Zunder, TotalEnergies, Ionity, mapareve.es ni ningún otro operador energético</strong>. Los nombres comerciales y logotipos mostrados pertenecen a sus respectivos propietarios y se emplean exclusivamente con fines identificativos. La información de disponibilidad procede de fuentes públicas de acceso abierto y tiene carácter meramente orientativo.</p>
             </div>
         </section>
 

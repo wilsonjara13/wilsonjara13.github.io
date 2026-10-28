@@ -135,14 +135,14 @@
 <body>
     <div class="container">
         <header>
-            <span class="app-badge">Eliminación de Datos</span>
+            <span class="app-badge">Eliminación de Datos &bull; v2.5.0</span>
             <h1>Solicitud de Eliminación de Cuentas y Datos Personales</h1>
-            <p class="date">EcoCarga para Android &bull; Política de Eliminación conforme a Google Play</p>
+            <p class="date">EcoCarga v2.5.0 para Android &bull; Última actualización: 28 de octubre de 2026</p>
         </header>
 
         <section>
             <h2>Información General</h2>
-            <p>En cumplimiento con las directrices de seguridad de datos y privacidad de Google Play, <strong>EcoCarga</strong> garantiza que cualquier usuario puede solicitar o ejecutar la supresión completa de sus datos personales, credenciales de cuenta y copias de seguridad en la nube de forma inmediata y sin trabas.</p>
+            <p>En cumplimiento con las directrices de seguridad de datos y privacidad de Google Play, <strong>EcoCarga</strong> garantiza que cualquier usuario puede solicitar o ejecutar la supresión completa de sus datos locales, credenciales de cuenta y copias de seguridad en la nube de forma inmediata y sin trabas.</p>
             <p>EcoCarga opera bajo una arquitectura de soberanía en el dispositivo (sin servidores centrales propios). Por tanto, la gestión de eliminación se ejecuta directamente entre su dispositivo y su propia cuenta de Google.</p>
         </section>
 
@@ -151,14 +151,14 @@
 
             <div class="step-card">
                 <h3>1. Datos de Sesión y Cuenta de Google</h3>
-                <p><strong>Qué incluye:</strong> Nombre del usuario, dirección de correo electrónico y token OAuth de sesión almacenados localmente.</p>
+                <p><strong>Qué incluye:</strong> Nombre del usuario, dirección de correo electrónico, URL de avatar y sesión OAuth almacenados localmente.</p>
                 <p><strong>Cómo eliminarlos:</strong></p>
                 <ol>
                     <li>Abra la app <strong>EcoCarga</strong>.</li>
                     <li>Diríjase a la pestaña <strong>Perfil</strong>.</li>
-                    <li>Pulse el botón <strong>"Desvincular cuenta"</strong>.</li>
+                    <li>Pulse el botón <strong>"Desvincular cuenta"</strong> y confirme la acción.</li>
                 </ol>
-                <p>Esto borrará al instante toda referencia a su cuenta de Google del almacenamiento del dispositivo.</p>
+                <p>Esto borrará al instante toda referencia a su cuenta de Google del almacenamiento del dispositivo y revocará la sesión local.</p>
             </div>
 
             <div class="step-card">
@@ -168,18 +168,18 @@
                 <ol>
                     <li>Acceda a la página oficial de <a href="https://myaccount.google.com/permissions" target="_blank" class="action-link">Permisos de su Cuenta de Google</a>.</li>
                     <li>Localice <strong>EcoCarga</strong> en la lista de aplicaciones con acceso.</li>
-                    <li>Haga clic en <strong>"Eliminar el acceso"</strong> o en <strong>"Eliminar datos ocultos de la aplicación"</strong>.</li>
+                    <li>Haga clic en <strong>"Eliminar el acceso"</strong> (o desde Google Drive web en <em>Configuración &gt; Administrar aplicaciones &gt; EcoCarga &gt; Opciones &gt; Eliminar datos ocultos de la aplicación</em>).</li>
                 </ol>
                 <p>Google suprimirá de forma irreversible todos los archivos y configuraciones vinculados a EcoCarga en su Google Drive.</p>
             </div>
 
             <div class="step-card">
-                <h3>3. Datos Locales y Estaciones Favoritas en el Teléfono</h3>
-                <p><strong>Qué incluye:</strong> Lista de estaciones guardadas, notas personalizadas, filtros y registro de alarmas en el teléfono.</p>
+                <h3>3. Datos Locales, Estaciones Favoritas y Alertas en el Teléfono</h3>
+                <p><strong>Qué incluye:</strong> Lista de estaciones guardadas, alias personalizados, preferencias de idioma/navegador y alertas de vigilancia en el teléfono.</p>
                 <p><strong>Cómo eliminarlos:</strong></p>
                 <ol>
-                    <li>En la app, vaya a <strong>Ajustes</strong> y pulse <strong>"Restablecer datos"</strong>.</li>
-                    <li>O bien, desinstale la aplicación desde el menú de aplicaciones de Android. Al desinstalarla, el sistema operativo borra automáticamente todo el almacenamiento protegido de la app.</li>
+                    <li>Para borrar estaciones concretas: en la pestaña <strong>Cargadores</strong>, deslice cualquier tarjeta hacia la izquierda para eliminarla, o pulse <strong>"Eliminar todas"</strong> en la pestaña <strong>Vigilancia</strong> para cancelar todas las alertas.</li>
+                    <li>Para borrar absolutamente todos los datos locales: vaya a los <strong>Ajustes de Android &gt; Aplicaciones &gt; EcoCarga &gt; Almacenamiento &gt; Borrar datos</strong>, o simplemente desinstale la aplicación. Al hacerlo, Android destruye tanto las preferencias locales como el respaldo cifrado <code>AES-256-GCM</code> del dispositivo.</li>
                 </ol>
             </div>
         </section>
